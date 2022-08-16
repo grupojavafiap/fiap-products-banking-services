@@ -5,7 +5,7 @@ import { firstValueFrom, map } from 'rxjs';
 import { CacheApp } from 'src/cache/cache-app.enum';
 import { ArrayUtil } from 'src/shared/array-util';
 import { ParticipantsService } from '../participants/participants.service';
-import { Brand, Company, PersonalAccount } from './dto/personal-accounts.dto';
+import { Brand, PersonalAccount } from './dto/personal-accounts.dto';
 import { Cache } from 'cache-manager';
 import { PaginateService } from 'src/shared/paginate.service';
 
@@ -118,22 +118,31 @@ export class PersonalAccountsService {
     {
         const accountByCnpj =  await this.findByCnpj(cnpjNumber);
 
-        const companyAccounts = new Array<PersonalAccount>();
+        if(accountByCnpj && accountByCnpj.length)
+        {
+            const companyAccounts = new Array<PersonalAccount>();
 
-        accountByCnpj.forEach(account =>
-              account.brand.companies.forEach(company => 
-             {
-                const matchAccount = company.personalAccounts.find(account => account.type == accountType)
+            accountByCnpj.forEach(account =>
+                {
+                    if(account && account.brand && account.brand.companies)
+                    {
+                        account.brand.companies.forEach(company => 
+                        {
+                            const matchAccount = company.personalAccounts.find(account => account.type == accountType)
+        
+                            companyAccounts.push(matchAccount);
+                        })
+                    }
+                }
+            );
 
-                companyAccounts.push(matchAccount);
-            }     
-        ));
-
-        return {
-            name: accountByCnpj[0].brand.name,
-            cnpjNumber: cnpjNumber,
-            accounts: companyAccounts
+            return {
+                name: accountByCnpj[0].brand.name,
+                cnpjNumber: cnpjNumber,
+                accounts: companyAccounts
+            }
         }
+        return [];
     }
 
 
@@ -149,8 +158,6 @@ export class PersonalAccountsService {
 
                         types.add(account.type);
         })))
-
-        console.log("types ", types);
 
         return Array.from(types);
     }

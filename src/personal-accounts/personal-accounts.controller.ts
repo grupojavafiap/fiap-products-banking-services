@@ -77,13 +77,13 @@ export class PersonalAccountsController {
     @ApiParam({
         name: 'cnpjNumber',
         required: true,
-        example: '92702067000196',
+        example: '10573521000191',
         description: 'CNPJ do participante'
     })
     @ApiParam({
         name: 'accountType',
         required: true,
-        example: 'CONTA_DEPOSITO_A_VISTA',
+        example: 'CONTA_PAGAMENTO_PRE_PAGA',
         description: 'Tipos de conta'
     })
     public findByCnpjAndType(@Param('cnpjNumber') cnpjNumber:string, @Param('accountType') type:string)
