@@ -29,7 +29,7 @@ export class PersonalAccountsService {
      * Esse método é iniciado pelo cron a cada 15 minutos.
      * 
      */
-    @Cron('50 * * * * *')
+    @Cron('*/15 * * * *')
     async updateCache()
     {
         const participants = await this.participantsService.findAllParticipants();
@@ -151,7 +151,7 @@ export class PersonalAccountsService {
         })))
 
         console.log("types ", types);
-        
+
         return Array.from(types);
     }
 

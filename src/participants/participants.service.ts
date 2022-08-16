@@ -30,10 +30,10 @@ export class ParticipantsService {
      * Método responsável por acionar a API de participantes e armazenar em cache o 
      * resultado da consulta. 
      * 
-     * Esse método é iniciado pelo cron a cada 10 minutos.
+     * Esse método é iniciado pelo cron a cada 15 minutos.
      * 
      */
-    @Cron('45 * * * * *')
+    @Cron('*/15 * * * *')
     async updateCache() 
     {
         const urlDiretoryParticipants =  this.config.get('URL_DIRETORY_PARTICIPANTS');

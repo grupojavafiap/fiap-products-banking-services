@@ -12,6 +12,28 @@ NPM    - 6.x.x
 $ npm install
 ```
 
+## Criando arquivo de variáveis de ambiente
+
+- Criei o arquivo `.env` na raiz do projeto.
+
+Adicine o conteudo abaixo no `.env`
+```bash
+#PARAMETROS APIS
+URL_DIRETORY_PARTICIPANTS=https://data.directory.openbankingbrasil.org.br/participants
+API_FAMILY_TYPE=products-services
+PATTERN_ENDPOINT=products-services/v1/personal-accounts
+
+#REDIS
+REDIS_HOST=
+REDIS_PORT=
+REDIS_PASSWORD=
+
+#NODEJS
+NODE_TLS_REJECT_UNAUTHORIZED = 0;
+PORT=3000
+API_HOST=http://localhost:3000
+```
+
 ## Como rodar?
 
 ```bash
@@ -33,11 +55,14 @@ Usamos a espeficicação [OpenAPI](https://www.openapis.org/) para documentar a 
 
 
 
+
 ## Cloud
+O projeto foi deployado na Heroku e pode ser acessado na URL:
+- https://fiap-products-banking-services.herokuapp.com
+
 
 
 ## Tecnologias Utilizadas
-
 - Nodejs 
   A API foi escrita em Nodejs
 
@@ -45,7 +70,7 @@ Usamos a espeficicação [OpenAPI](https://www.openapis.org/) para documentar a 
   Utilizamos o framework [Nestjs](https://nestjs.com/) na construção da API. NestJS é um framework Node.js de código aberto destinado ao desenvolvimento de aplicativos do lado do servidor. Foi criado por Kamil Mysliwiec e lançado em 2017. Sob o capô, por padrão, o NestJS faz uso do framework Express.js, sendo também compatível com o Fastify. Sua arquitetura é fortemente inspirada no Angular.
 
 - Redis
-  Utilizamos o Redis para cachear as respostas das API's do OpenBanking. Utilizamos o [Redis Cloud](https://redis.com/try-free) no plano free. 
+  Utilizamos o Redis para cachear as respostas das API's do OpenBanking. Utilizamos o [Redis Labs](https://redis.com/try-free) no plano free. 
 
 
 ## Documentação das API OpenBanking utilizadas.
@@ -55,3 +80,7 @@ Usamos a espeficicação [OpenAPI](https://www.openapis.org/) para documentar a 
 
 - API de Participantes 
   - https://data.directory.openbankingbrasil.org.br/participants
+
+
+## Atualização do Cache
+Criamos uma rotina que roda a cada 15 minutos e consume as informações das API's e armazenam em cache.
