@@ -29,7 +29,6 @@ REDIS_PORT=
 REDIS_PASSWORD=
 
 #NODEJS
-NODE_TLS_REJECT_UNAUTHORIZED = 0;
 PORT=3000
 API_HOST=http://localhost:3000
 ```
@@ -84,3 +83,14 @@ O projeto foi deployado na Heroku e pode ser acessado na URL:
 
 ## Atualização do Cache
 Criamos uma rotina que roda a cada 15 minutos e consume as informações das API's e armazenam em cache.
+
+
+### Integrantes
+
+| RM  | Aluno | Turma |
+| ------------- |:-------------:| --------- | 
+| 344792      | Benisson dos Santos Lopes     | 1SCJRBB-2022 |
+| 344799      | Leonardo Guerra Torres Filho     | 1SCJRBB-2022 |
+| 344801      | Lucas Eugenio Ribeiro     | 1SCJRBB-2022 |
+| 344794      | César de Lira Santos     | 1SCJRBB-2022 |
+| 344791      | Anderson Evangelista     | 1SCJRBB-2022 |
